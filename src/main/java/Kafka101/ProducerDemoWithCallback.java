@@ -20,7 +20,7 @@ public class ProducerDemoWithCallback {
         // Create the producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
-        for(int x = 0; x <= 10; x++){
+        for (int x = 0; x <= 10; x++) {
             //Create a producer record
             ProducerRecord<String, String> record = new ProducerRecord<>("first_topic", String.valueOf(x));
             // Create the data - asynchronous
@@ -33,7 +33,6 @@ public class ProducerDemoWithCallback {
                                 "Partition: " + recordMetadata.partition() + "\n" +
                                 "Offset: " + recordMetadata.offset() + "\n" +
                                 "Timestamp: " + recordMetadata.timestamp()
-
                         );
                     } else {
                         logger.error("Error while producing", e);
