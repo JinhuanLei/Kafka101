@@ -32,7 +32,7 @@ public class ConsumerDemoWithThread {
 
         // create the consumer runnable
         logger.info("Creating the consumer thread");
-        Runnable myConsumerRunnable = new ConsumerRunnable(
+        ConsumerRunnable myConsumerRunnable = new ConsumerRunnable(
                 bootstrapServers,
                 groupId,
                 topic,
@@ -46,7 +46,7 @@ public class ConsumerDemoWithThread {
         // add a shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("Caught shutdown hook");
-            ((ConsumerRunnable) myConsumerRunnable).shutdown();
+            myConsumerRunnable.shutdown();
             try {
                 latch.await();
             } catch (InterruptedException e) {
